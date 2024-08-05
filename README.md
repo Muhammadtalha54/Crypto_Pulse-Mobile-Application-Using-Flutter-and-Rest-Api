@@ -1,6 +1,14 @@
 # crypto_tracker_1
 
-A new Flutter project.
+Features
+Top Cryptocurrencies: 
+-Displays a list of top cryptocurrencies along with their current prices and market capitalization rankings.
+-Price Graph: 
+Visualizes the price trends of selected cryptocurrencies with a graph.
+-Favorites:
+Allows users to add cryptocurrencies to their favorites for quick access.
+-Light and Dark Mode:
+Provides a light and dark mode feature for better user experience.
 
 ## Getting Started
 
