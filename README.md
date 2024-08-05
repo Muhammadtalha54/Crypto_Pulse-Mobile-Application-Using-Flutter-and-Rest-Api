@@ -12,6 +12,31 @@ Provides a light and dark mode feature for better user experience.
 
 ## Getting Started
 
+## Installation:
+1.Clone the repository:
+https://github.com/Muhammadtalha54/Crypto_Tracker-Mobile-Application-Using-Flutter-and-Rest-Api.git
+2.Navigate to the project directory:
+cd repository
+3.Install dependencies:
+flutter pub get
+4.Run the app:
+flutter run
+
+## Usage
+
+-Home Screen: 
+View a list of top cryptocurrencies.
+-Cryptocurrency Details: 
+Tap on a cryptocurrency to view its price graph.
+-Favorites:
+Add cryptocurrencies to your favorites for easier access.
+-Theme Switching:
+Toggle between light and dark modes using the settings option.
+
+
+
+
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
