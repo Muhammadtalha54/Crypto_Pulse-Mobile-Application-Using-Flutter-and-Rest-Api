@@ -9,6 +9,14 @@ Visualizes the price trends of selected cryptocurrencies with a graph.
 Allows users to add cryptocurrencies to their favorites for quick access.
 -Light and Dark Mode:
 Provides a light and dark mode feature for better user experience.
+-Line Chart:
+Provides a line graph chart caompairing prices 
+-OHLC chart:
+Provides OHLC( open-high-low-close ) to observe tnechnical analysis to illustrate movements in the price
+-Crypto wallet:
+Provides the facility to create your own crypto wallet 
+-Send  and receive:
+Provides facility to send and recieive crypto from wallet to wallet
 
 ## Getting Started
 
@@ -32,6 +40,8 @@ Tap on a cryptocurrency to view its price graph.
 Add cryptocurrencies to your favorites for easier access.
 -Theme Switching:
 Toggle between light and dark modes using the settings option.
+-wallet screen:
+Displays wallet adress and balace and sending options
 
 
 
