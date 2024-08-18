@@ -1,4 +1,5 @@
 # crypto_tracker_1
+Getx and MVVM clean code architecture used
 
 # Features
 **Top Cryptocurrencies:**
