@@ -1,5 +1,5 @@
 import 'package:crypto_tracker_1/Resources/Apptheme/Apptheme.dart';
-import 'package:crypto_tracker_1/Resources/Apptheme/Themecontroller.dart';
+import 'package:crypto_tracker_1/Viewmodel/Controllers/themecontroller/Themecontroller.dart';
 import 'package:crypto_tracker_1/Resources/Routes/Routenames.dart';
 import 'package:crypto_tracker_1/Resources/Routes/Routes.dart';
 import 'package:crypto_tracker_1/View/Splashscreen/Spalshscreen.dart';

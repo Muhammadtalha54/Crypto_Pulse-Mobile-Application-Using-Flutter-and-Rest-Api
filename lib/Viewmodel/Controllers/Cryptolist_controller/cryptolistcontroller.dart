@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:crypto_tracker_1/Data/Responce/Status.dart';
 import 'package:crypto_tracker_1/Model/Home/Cryptolistmodel.dart';
 import 'package:crypto_tracker_1/Repositories/Crypto_list_repo.dart';
@@ -38,12 +40,12 @@ class cryptolistcontroller extends GetxController {
       Markets = temp;
 
       setRxRequestStatus(Status.COMPLETED);
-      //     Timer(const Duration(milliseconds: 1300), () {
-      //       fetchdata();
-      //       if (kDebugMode) {
-      //         print("data fetched");
-      //       }
-      //     });
+      // Timer(const Duration(seconds: 3), () {
+      //   fetchdata();
+
+      //   print("data fetched");
+      //   print("object");
+      // });
     } catch (e) {
       print(e);
 
@@ -71,10 +73,3 @@ class cryptolistcontroller extends GetxController {
     await favoroitecontroller.removefromfavorite(crypto.id!);
   }
 }
-
-
-
-
-
-
-

@@ -48,6 +48,7 @@ class NetworkApiServices extends BaseApiAervices {
         // print('the markets');
         //print(markets);
         // print(apirespponce);
+        //print(apirespponce);
         return responsejson;
 
       case 400:
@@ -94,44 +95,7 @@ class NetworkApiServices extends BaseApiAervices {
     throw UnimplementedError();
   }
 }
-//   @override
-//   //this is post api function
-//   Future PostApi(var data, String Url) async {
-//     //  This condition   if(kDebugMode) checks that if the app is in debug mode then it will execute
-// // thebody otherwise not
-//     if (kDebugMode) {
-//       print(Url);
-//     }
-
-// // a variable that isuse for storing the responce
-//     dynamic responsejson;
-
-//     try {
-//       final response = await http
-//           .post(Uri.parse(Url), body: data)
-//           .timeout(Duration(seconds: 20));
-
-//       responsejson = Returnresponse(response);
-//     }
-
-//     //Socket execption means that internet is unavailable
-//     on SocketException {
-//       throw InternetExceptions('');
-//     } on RequestTimeout {
-//       throw RequestTimeout('');
-//     }
-//     if (kDebugMode) {
-//       print(responsejson);
-//     }
-//     return responsejson;
-//   }
-// }
-
-
-
-
-
-
+// 
 
 
 

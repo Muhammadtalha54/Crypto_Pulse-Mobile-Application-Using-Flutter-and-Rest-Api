@@ -45,9 +45,18 @@ dependencies:
   chart_sparkline: ^1.0.15+1
   google_nav_bar: ^5.0.6
   animated_text_kit:
+  fl_chart:
   google_fonts:
-  syncfusion_flutter_charts: ^26.2.7
+  syncfusion_flutter_charts: ^20.4.52
   intl:
+  carousel_slider: ^4.0.0
+  web3dart: ^2.1.4
+  hex: ^0.2.0
+  ed25519_hd_key: ^2.1.0
+  bip39: ^1.0.6
+
+  
+  #carousel_slider_plus: ^6.0.0+1
 
 
 dev_dependencies:

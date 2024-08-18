@@ -3,8 +3,8 @@ import 'package:crypto_tracker_1/Data/Responce/Status.dart';
 import 'package:crypto_tracker_1/Model/Home/Cryptolistmodel.dart';
 import 'package:crypto_tracker_1/Repositories/Crypto_list_repo.dart';
 import 'package:crypto_tracker_1/Resources/Apptheme/Apptheme.dart';
-import 'package:crypto_tracker_1/Resources/Components/Internet_Exception_widget.dart';
-import 'package:crypto_tracker_1/Resources/Components/Showdata.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Internet_Exception_widget.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Showdata.dart';
 import 'package:crypto_tracker_1/Resources/Routes/Routenames.dart';
 import 'package:crypto_tracker_1/View/Detailspage/Detailspage.dart';
 import 'package:crypto_tracker_1/Viewmodel/Controllers/Cryptolist_controller/cryptolistcontroller.dart';
@@ -16,7 +16,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import '../../Resources/Apptheme/Themecontroller.dart';
+import '../../Viewmodel/Controllers/themecontroller/Themecontroller.dart';
 
 class HOmescreen extends StatefulWidget {
   const HOmescreen({super.key});
@@ -35,26 +35,26 @@ class _HOmescreenState extends State<HOmescreen> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          
           bottomNavigationBar: // Padding(
               //  padding: const EdgeInsets.only(right: 70, left: 70),
               Padding(
-            padding: const EdgeInsets.only(right: 70, left: 70),
+            padding: const EdgeInsets.only(right: 30, left: 30),
             child: GNav(
               padding: EdgeInsets.all(16),
               gap: 8,
               tabShadow: [
                 BoxShadow(
-                    color: Theme.of(context).primaryColorLight.withOpacity(0.5),
-                    blurRadius: 8)
+                  color: Theme.of(context).primaryColor.withOpacity(0.5),
+                  //blurRadius: 8
+                )
               ],
               onTabChange: (index) {
                 pageviewController.changePage(index);
               },
               backgroundColor: Theme.of(context).primaryColor,
-              color: Color.fromARGB(255, 0, 0, 0),
-              //activeColor: Color.fromARGB(255, 0, 0, 0),
-              tabBackgroundColor: Color.fromARGB(93, 201, 200, 200),
+              // color: Theme.of(context).backgroundColor,
+              activeColor: Theme.of(context).iconTheme.color,
+              tabBackgroundColor: Color.fromARGB(255, 190, 185, 185),
               tabs: [
                 GButton(
                   icon: Icons.paid,
@@ -68,6 +68,13 @@ class _HOmescreenState extends State<HOmescreen> {
                   iconSize: Theme.of(context).iconTheme.size,
                   iconColor: Theme.of(context).iconTheme.color,
                   text: "Favorites",
+                  textStyle: Theme.of(context).textTheme.titleMedium,
+                ),
+                GButton(
+                  icon: Icons.wallet,
+                  iconSize: Theme.of(context).iconTheme.size,
+                  iconColor: Theme.of(context).iconTheme.color,
+                  text: "wallet",
                   textStyle: Theme.of(context).textTheme.titleMedium,
                 ),
               ],

@@ -20,14 +20,16 @@ class Chartscontroller extends GetxController {
     isLoading.value = true;
     try {
       List<List<dynamic>> _chartdata = await _api.getChartdata(name);
-      print('chartdata data: $_chartdata');
+      print(name);
+
+      // print('chartdata data: $_chartdata');
 
       List<OHLC_chart_model> data = _chartdata.map((list) {
         return OHLC_chart_model.fromList(list);
       }).toList();
 
-      print('data');
-      print('Converted data: $data');
+      // print('data');
+      //print('Converted data: $data');
 
       Chartdata.value = data;
 
@@ -36,7 +38,7 @@ class Chartscontroller extends GetxController {
       // print(e);
       setRxRequestStatus(Status.ERROR);
       print("error occured");
-      Chartdata.value = [];
+     // Chartdata.value = [];
     } finally {
       isLoading.value = false;
     }

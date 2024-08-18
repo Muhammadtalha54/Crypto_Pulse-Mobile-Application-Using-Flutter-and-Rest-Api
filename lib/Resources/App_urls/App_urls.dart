@@ -16,5 +16,5 @@ class Appurls {
       '$coinbaseurl/api/v3/coins/$coinid/market_chart?vs_currency=usd&days=14';
 
   static String Ohlcchart =
-      '$coinbaseurl/api/v3/coins/$coinid/ohlc?vs_currency=usd&days=14&precision=4';
+      '$coinbaseurl/api/v3/coins/$coinid/ohlc?vs_currency=usd&days=7&precision=4';
 }

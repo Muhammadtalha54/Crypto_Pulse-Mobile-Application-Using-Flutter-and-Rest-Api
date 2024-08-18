@@ -11,11 +11,12 @@ class CryptoChart_Repository {
 
   Future<List<List<dynamic>>> getChartdata(String name) async {
     try {
+      Appurls.coinid = name.toString().toLowerCase();
       String url = Appurls.Ohlcchart;
-      Appurls.coinid = name.toString();
-      dynamic responce = await _apiServices.getApi(Appurls.Ohlcchart);
-      print('Raw response: $responce');
-      print('Response type: ${responce.runtimeType}');
+      dynamic responce = await _apiServices.getApi(url);
+      // print(url);
+      // print('Raw response: $responce');
+      // print('Response type: ${responce.runtimeType}');
 
       if (responce is List) {
         // Check if the first item in the list is also a List

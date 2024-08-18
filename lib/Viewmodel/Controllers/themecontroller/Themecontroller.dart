@@ -1,4 +1,5 @@
 import 'package:crypto_tracker_1/Resources/Apptheme/Apptheme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,13 +24,16 @@ class themecontroller extends GetxController {
     Get.changeTheme(isDarkmode.value ? darkTheme : lightTheme);
     isDarkmode.value = darkMode;
     Get.changeTheme(darkMode ? darkTheme : lightTheme);
-    print("Loaded Theme: ${darkMode ? 'Dark' : 'Light'}");
+    if (kDebugMode){
+    print("Loaded Theme: ${darkMode ? 'Dark' : 'Light'}");}
   }
 
   Future<void> _saveTheme(bool isDark) async {
-    print("dark mode vale$isDark.");
+     if (kDebugMode){
+    print("dark mode vale$isDark.");}
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isDarkMode', isDark);
-    print("Saved Theme: ${isDark ? 'Dark' : 'Light'}"); // Debug
+     if (kDebugMode){
+    print("Saved Theme: ${isDark ? 'Dark' : 'Light'}");} // Debug
   }
 }

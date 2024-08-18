@@ -31,7 +31,7 @@ var lightTheme = ThemeData(
       ),
       bodyLarge: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 18,
         color: Colors.blue,
       ),
       // for appbar heading
@@ -80,6 +80,11 @@ var lightTheme = ThemeData(
         fontWeight: FontWeight.w600,
         fontSize: 14,
       ),
+      titleLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 17,
+        color: Color.fromARGB(255, 0, 0, 0),
+      ),
     ),
     iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0), size: 25),
     cardTheme: CardTheme(
@@ -118,13 +123,18 @@ var darkTheme = ThemeData(
       ),
       bodyLarge: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 18,
         color: Colors.blue,
+      ),
+      titleLarge: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 17,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
       // for appbar heading
       headlineSmall: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 20,
+        fontSize: 18,
         color: Color.fromARGB(255, 255, 255, 255),
       ),
       headlineMedium: TextStyle(
@@ -156,6 +166,7 @@ var darkTheme = ThemeData(
         fontSize: 17,
         color: Color.fromARGB(255, 248, 248, 248),
       ),
+
       // market change percentage negative
       labelSmall: TextStyle(
         color: Colors.red,
@@ -180,7 +191,7 @@ var darkTheme = ThemeData(
     ),
     cardTheme: CardTheme(
         elevation: 5,
-        color: Color.fromARGB(255, 26, 26, 26),
+        color: Color.fromARGB(255, 0, 0, 0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: AppBarTheme(
       backgroundColor: Color.fromARGB(255, 0, 0, 0),

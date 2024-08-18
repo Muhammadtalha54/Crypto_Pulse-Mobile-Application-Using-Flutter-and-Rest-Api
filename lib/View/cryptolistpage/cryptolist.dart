@@ -1,9 +1,13 @@
 import 'package:crypto_tracker_1/Model/Home/Cryptolistmodel.dart';
-import 'package:crypto_tracker_1/Resources/Apptheme/Themecontroller.dart';
-import 'package:crypto_tracker_1/Resources/Components/Header.dart';
-import 'package:crypto_tracker_1/Resources/Components/Internet_Exception_widget.dart';
-import 'package:crypto_tracker_1/Resources/Components/Showdata.dart';
+import 'package:crypto_tracker_1/Viewmodel/Controllers/themecontroller/Themecontroller.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Header.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Internet_Exception_widget.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Showdata.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/candles.dart';
+import 'package:crypto_tracker_1/Resources/Components/slider/caraouselslider.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/heading.dart';
 import 'package:crypto_tracker_1/View/Detailspage/Detailspage.dart';
+import 'package:crypto_tracker_1/Viewmodel/Controllers/caraouselcontroller/caraouselcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,12 +23,15 @@ class Cryptolistscreen extends StatefulWidget {
 }
 
 class _CryptolistscreenState extends State<Cryptolistscreen> {
+  final themecontroller themecontrol = Get.put(themecontroller());
+
+  @override
   final cryptolistcontroller1 = Get.put(cryptolistcontroller());
 
-  final themecontroller themecontrol = Get.put(themecontroller());
   @override
   Widget build(BuildContext context) {
     //   print(cryptolistcontroller1.Markets.length);
+
     return Scaffold(
         body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -32,22 +39,62 @@ class _CryptolistscreenState extends State<Cryptolistscreen> {
             children: [
           Obx(
             () {
-              return cryptoHeader(
-                onIconTap: () {
-                  themecontrol.toggleTheme();
-                },
-                icon: themecontrol.isDarkmode.value == true
-                    ? Icons.light_mode
-                    : Icons.dark_mode,
-                iconColor: themecontrol.isDarkmode.value == true
-                    ? Colors.white
-                    : Colors.black,
-                welcomeText: "Welcome Back",
-                trackerText: "Crypto Tracker",
+              return Container(
+                height: Get.height * 0.11,
+                width: Get.width,
+                child: cryptoHeader(
+                  onIconTap: () {
+                    themecontrol.toggleTheme();
+                  },
+                  icon: themecontrol.isDarkmode.value == true
+                      ? Icons.light_mode
+                      : Icons.dark_mode,
+                  iconColor: themecontrol.isDarkmode.value == true
+                      ? Colors.white
+                      : Colors.black,
+                  welcomeText: "Welcome Back",
+                  trackerText: "Crypto Tracker",
+                ),
               );
             },
           ),
+          SizedBox(
+            height: Get.height * 0.01,
+          ),
+          Heading(
+            heading: 'OHLC Charts',
+          ),
 
+          // Obx(() {
+          //   if (cryptolistcontroller1.rxRequestStatus.value ==
+          //       Status.COMPLETED) {
+          //     if (cryptolistcontroller1.Markets.isNotEmpty) {
+          //       return ReusableCarousel(
+          //         cryptoitems: cryptolistcontroller1.Markets,
+          //         width: Get.width,
+          //         autoPlay: true,
+          //         height: Get.height * 0.26,
+          //         initialPage: 1,
+          //         containerheight: Get.height * 0.26,
+          //         containerwidth: Get.width,
+          //       );
+          //     } else {
+          //       return Center(child: Text('No items available in carousel'));
+          //     }
+          //   } else if (cryptolistcontroller1.rxRequestStatus.value ==
+          //       Status.LOADING) {
+          //     return Center(
+          //         child: CircularProgressIndicator(color: Colors.blue));
+          //   } else {
+          //     return Center(child: Text('Error loading data'));
+          //   }
+          // }),
+          SizedBox(
+            height: Get.height * 0.01,
+          ),
+          Heading(
+            heading: 'Markets',
+          ),
           // height: Get.height,
           Expanded(
             child: Container(
@@ -88,9 +135,10 @@ class _CryptolistscreenState extends State<Cryptolistscreen> {
                                     const EdgeInsets.only(left: 20, right: 20),
                                 child: InkWell(
                                   onTap: () {
-                                    Get.toNamed('/Detailspage',
-                                        arguments: {'id': cryptocurrency.id!,
-                                        'name':cryptocurrency.name!});
+                                    Get.toNamed('/Detailspage', arguments: {
+                                      'id': cryptocurrency.id!,
+                                      'name': cryptocurrency.name!
+                                    });
                                   },
                                   child: Showcryptodata(
                                       onpress: () {
@@ -101,12 +149,13 @@ class _CryptolistscreenState extends State<Cryptolistscreen> {
                                         cryptolistcontroller1
                                             .removefavorite(cryptocurrency);
                                       },
+                                      opacity1: 1.0,
                                       cryptocurrency: cryptocurrency,
                                       imageurl: cryptocurrency.image!,
                                       cryptoname: cryptocurrency.name!,
                                       cryptsymbol: cryptocurrency.symbol!,
                                       price: cryptocurrency.currentPrice!,
-                                      height: Get.height * 0.1,
+                                      height: Get.height * 0.15,
                                       width: Get.width * 0.9,
                                       pricechange:
                                           cryptocurrency.priceChange24h!,
