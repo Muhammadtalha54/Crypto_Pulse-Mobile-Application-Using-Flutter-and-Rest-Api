@@ -23,11 +23,10 @@ class GenerateMnemonicPage extends StatelessWidget {
 
       Get.toNamed(RouteNames.verifymnemonicpage,
           arguments: {'mnemonic': mnemonic});
-
-     
     }
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('Generate Mnemonic'),
       ),
@@ -62,6 +61,7 @@ class GenerateMnemonicPage extends StatelessWidget {
               icon: const Icon(Icons.copy),
               label: const Text('Copy to Clipboard'),
               style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(vertical: 24.0),
                 textStyle: const TextStyle(fontSize: 20.0),
                 elevation: 4,

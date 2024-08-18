@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+import 'package:like_button/like_button.dart';
 
 import '../../../Viewmodel/Controllers/Cryptolist_controller/cryptolistcontroller.dart';
 
@@ -65,7 +66,7 @@ class _ShowcryptodataState extends State<Showcryptodata> {
             children: [
               Container(
                   height: Get.height * 0.13,
-                  width: Get.width * 0.32,
+                  width: Get.width * 0.335,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -76,7 +77,8 @@ class _ShowcryptodataState extends State<Showcryptodata> {
                       ),
                       Container(
                         height: Get.height * 0.07,
-                        width: Get.width * 0.2,
+                        width: Get.width * 0.215,
+                        //  color: Colors.red,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,43 +89,68 @@ class _ShowcryptodataState extends State<Showcryptodata> {
                                 style: Theme.of(context).textTheme.labelLarge),
                             //
                             // ,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: Get.width * 0.13,
-                                  child: Text(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    "(${widget.cryptsymbol.toString().toUpperCase()})",
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: Get.width * 0.12,
+                                    child: Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      "(${widget.cryptsymbol.toString().toUpperCase()})",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    ),
                                   ),
-                                ),
-                                Obx(() {
-                                  return (widget.cryptocurrency.isfavorite ==
-                                          false)
-                                      ? InkWell(
-                                          onTap: widget.onpress,
-                                          child: Icon(
-                                            Icons.favorite_border,
-                                            color: Theme.of(context)
-                                                .iconTheme
-                                                .color,
-                                            size: 18,
-                                          ),
-                                        )
-                                      : InkWell(
-                                          onTap: widget.onTap,
-                                          child: Icon(
+                                  Obx(() {
+                                    return Container(
+                                      //color: Colors.amber,
+                                      height: 25,
+                                      width: 35,
+                                      child: LikeButton(
+                                        circleSize: 5,
+                                        isLiked: widget
+                                            .cryptocurrency.isfavorite.value,
+                                        circleColor: const CircleColor(
+                                          start: Color(0xff00ddff),
+                                          end: Color(0xff0099cc),
+                                        ),
+                                        bubblesColor: const BubblesColor(
+                                          dotPrimaryColor: Colors.pink,
+                                          dotSecondaryColor:
+                                              Color.fromARGB(255, 240, 255, 33),
+                                        ),
+                                        likeBuilder: (bool isLiked) {
+                                          return Icon(
                                             Icons.favorite,
-                                            color: Colors.red,
-                                            size: 18,
-                                          ),
-                                        );
-                                }),
-                              ],
+                                            color: isLiked
+                                                ? Colors.red
+                                                : Colors.grey.withOpacity(0.5),
+                                            size: 25,
+                                          );
+                                        },
+                                        onTap: (bool isLiked) async {
+                                          try {
+                                            if (isLiked) {
+                                              widget.onTap;
+                                            } else {
+                                              widget.onpress;
+                                            }
+                                            return !isLiked;
+                                          } catch (e) {
+                                            print(
+                                                'Error updating favorite: $e');
+                                            return isLiked;
+                                          }
+                                        },
+                                      ),
+                                    );
+                                  }),
+                                ],
+                              ),
                             ),
                           ],
                         ),

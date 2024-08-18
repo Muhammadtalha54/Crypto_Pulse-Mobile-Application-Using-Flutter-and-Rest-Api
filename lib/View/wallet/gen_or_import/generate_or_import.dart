@@ -2,7 +2,6 @@ import 'package:crypto_tracker_1/Resources/Routes/Routenames.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class CreateOrImportPage extends StatelessWidget {
   const CreateOrImportPage({super.key});
 
@@ -47,7 +46,6 @@ class CreateOrImportPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Get.toNamed(RouteNames.GenerateMnemonicPage);
-              
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:

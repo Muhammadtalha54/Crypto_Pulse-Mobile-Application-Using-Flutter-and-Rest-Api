@@ -20,8 +20,15 @@ class walletcontroller1 extends GetxController implements walletaddressservice {
     if (input.trim() == mnemonic.trim()) {
       await getPrivateKey(mnemonic); // Assuming this is already defined
       isVerified.value = true;
-      print(isVerified.value);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isverified', isVerified.value);
+
+    
     }
+  }
+  Future<void> removeverifiedstatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('isverified',);
   }
   // variable to store the private key
 

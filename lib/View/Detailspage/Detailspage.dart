@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
 
 class Detailspage extends StatefulWidget {
   const Detailspage({
@@ -86,27 +87,45 @@ class _DetailspageState extends State<Detailspage> {
                         subtitle: Text(
                             "\$ " + crypto.currentPrice!.toStringAsFixed(3),
                             style: Theme.of(context).textTheme.headlineMedium),
-                        trailing: (crypto.isfavorite == false)
-                            ? InkWell(
-                                onTap: () {
-                                  cryptobyid.addfavorite(crypto);
-                                },
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  color: Theme.of(context).iconTheme.color,
-                                  size: 30,
-                                ),
-                              )
-                            : InkWell(
-                                onTap: () {
+                        trailing: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: LikeButton(
+                            isLiked: crypto.isfavorite.value,
+                            circleColor: const CircleColor(
+                              start: Color(0xff00ddff),
+                              end: Color(0xff0099cc),
+                            ),
+                            bubblesColor: const BubblesColor(
+                              dotPrimaryColor: Colors.pink,
+                              dotSecondaryColor: Colors.white,
+                            ),
+                            likeBuilder: (bool isLiked) {
+                              return Icon(
+                                Icons.favorite,
+                                color: isLiked
+                                    ? Colors.red
+                                    : Colors.grey.withOpacity(0.5),
+                                size: 30,
+                              );
+                            },
+                            onTap: (bool isLiked) async {
+                              try {
+                                if (isLiked) {
                                   cryptobyid.removefavorite(crypto);
-                                },
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                  size: 30,
-                                ),
-                              ),
+                                  crypto.isfavorite.value = false;
+                                } else {
+                                  cryptobyid.addfavorite(crypto);
+                                  crypto.isfavorite.value = true;
+                                }
+                                return !isLiked;
+                              } catch (e) {
+                                print('Error updating favorite: $e');
+                                return isLiked;
+                              }
+                            },
+                          ),
+                        ),
                       ),
                       // Sparklinechart(
                       //   height: Get.height * 0.3,

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../Viewmodel/Controllers/walletcontroller/walletcontroller.dart';
 
-
 class VerifyMnemonicPage extends StatefulWidget {
   @override
   _VerifyMnemonicPageState createState() => _VerifyMnemonicPageState();
@@ -23,20 +22,10 @@ class _VerifyMnemonicPageState extends State<VerifyMnemonicPage> {
     mnemonic = Get.arguments['mnemonic'] ?? '';
   }
 
-  // void verifyMnemonic() {
-  //   if (verificationText.trim() == mnemonic.trim()) {
-  //     walletcontroller.getPrivateKey(mnemonic).then((privateKey) {
-  //       setState(() {
-  //         isVerified = true;
-  //       });
-  //     });
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     void navigateToWalletPage() {
-      Get.toNamed(RouteNames.WalletPage);
+      Get.toNamed(RouteNames.Homescreen);
     }
 
     void error() {
@@ -44,6 +33,7 @@ class _VerifyMnemonicPageState extends State<VerifyMnemonicPage> {
     }
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('Verify Mnemonic and Create'),
       ),
@@ -92,6 +82,7 @@ class _VerifyMnemonicPageState extends State<VerifyMnemonicPage> {
               onPressed: () {
                 walletcontroller.verifyMnemonic(mnemonic, verificationText);
               },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
               child: const Text('Verify'),
             ),
             const SizedBox(height: 24.0),
