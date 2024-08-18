@@ -1,22 +1,29 @@
 # crypto_tracker_1
 
-Features
-Top Cryptocurrencies: 
--Displays a list of top cryptocurrencies along with their current prices and market capitalization rankings.
--Price Graph: 
-Visualizes the price trends of selected cryptocurrencies with a graph.
--Favorites:
-Allows users to add cryptocurrencies to their favorites for quick access.
--Light and Dark Mode:
-Provides a light and dark mode feature for better user experience.
--Line Chart:
-Provides a line graph chart caompairing prices 
--OHLC chart:
-Provides OHLC( open-high-low-close ) to observe tnechnical analysis to illustrate movements in the price
--Crypto wallet:
-Provides the facility to create your own crypto wallet 
--Send  and receive:
-Provides facility to send and recieive crypto from wallet to wallet
+# Features
+**Top Cryptocurrencies:**
+- Displays a list of top cryptocurrencies along with their current prices and market capitalization rankings.
+
+**Price Graph:**
+- Visualizes the price trends of selected cryptocurrencies with a graph.
+
+**Favorites:**
+- Allows users to add cryptocurrencies to their favorites for quick access.
+
+**Light and Dark Mode:**
+- Provides a light and dark mode feature for better user experience.
+
+**Line Chart:**
+- Provides a line graph chart comparing prices.
+
+**OHLC Chart:**
+- Provides OHLC (Open-High-Low-Close) to observe technical analysis and illustrate movements in the price.
+
+**Crypto Wallet:**
+- Provides the facility to create your own crypto wallet.
+
+**Send and Receive:**
+- Provides facility to send and receive crypto from wallet to wallet.
 
 ## Getting Started
 
