@@ -49,12 +49,14 @@ dependencies:
   google_fonts:
   syncfusion_flutter_charts: ^20.4.52
   intl:
-  carousel_slider: ^4.0.0
+  carousel_slider: 
   web3dart: ^2.1.4
   hex: ^0.2.0
   ed25519_hd_key: ^2.1.0
   bip39: ^1.0.6
   like_button: ^2.0.5
+  molten_navigationbar_flutter: 
+  flutter_svg:
 
   
   #carousel_slider_plus: ^6.0.0+1

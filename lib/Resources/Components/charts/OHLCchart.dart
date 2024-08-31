@@ -54,8 +54,8 @@ class _OHLCChartState extends State<OHLCChart> {
           .reduce((a, b) => a > b ? a : b);
 
       // Setting minimum and maximum values based on the data
-      minValue = minLow - 500;
-      maxValue = maxHigh + 500;
+      minValue = minLow - 10;
+      maxValue = maxHigh + 10;
       // print(dataxource)
       print("minValue: $minValue");
       print("maxValue: $maxValue");

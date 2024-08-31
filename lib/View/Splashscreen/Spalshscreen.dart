@@ -30,10 +30,22 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      // backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         height: Get.height,
         width: Get.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.primary, // #2b4162
+              Theme.of(context).colorScheme.secondary, // #12100e
+            ],
+            begin: Alignment
+                .topLeft, // 315 degrees corresponds to top-left to bottom-right
+            end: Alignment.bottomRight,
+            stops: [0.0, 0.74], // #2b4162 at 0%, #12100e at 74%
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

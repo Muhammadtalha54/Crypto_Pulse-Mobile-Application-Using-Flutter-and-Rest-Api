@@ -15,6 +15,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
 import '../../Viewmodel/Controllers/themecontroller/Themecontroller.dart';
 
@@ -32,57 +33,44 @@ class _HOmescreenState extends State<HOmescreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
-          bottomNavigationBar: // Padding(
-              //  padding: const EdgeInsets.only(right: 70, left: 70),
-              Padding(
-            padding: const EdgeInsets.only(right: 30, left: 30),
-            child: GNav(
-              padding: EdgeInsets.all(16),
-              gap: 8,
-              tabShadow: [
-                BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.5),
-                  //blurRadius: 8
-                )
-              ],
-              onTabChange: (index) {
-                pageviewController.changePage(index);
+    return Scaffold(
+      bottomNavigationBar: Obx(
+        (() => MoltenBottomNavigationBar(
+        
+              selectedIndex: pageviewController.selectedIndex.toInt(),
+              barColor: Theme.of(context).backgroundColor,
+              onTabChange: (clickedIndex) {
+                pageviewController.changePage(clickedIndex);
               },
-              backgroundColor: Theme.of(context).primaryColor,
-              // color: Theme.of(context).backgroundColor,
-              activeColor: Theme.of(context).iconTheme.color,
-              tabBackgroundColor: Color.fromARGB(255, 190, 185, 185),
               tabs: [
-                GButton(
-                  icon: Icons.paid,
-                  iconSize: Theme.of(context).iconTheme.size,
-                  iconColor: Theme.of(context).iconTheme.color,
-                  text: "All Crypto",
-                  textStyle: Theme.of(context).textTheme.titleMedium,
+                MoltenTab(
+                  icon: Icon(
+                    Icons.paid,
+                    size: Theme.of(context).iconTheme.size,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ),
-                GButton(
-                  icon: Icons.favorite,
-                  iconSize: Theme.of(context).iconTheme.size,
-                  iconColor: Theme.of(context).iconTheme.color,
-                  text: "Favorites",
-                  textStyle: Theme.of(context).textTheme.titleMedium,
+                MoltenTab(
+                  icon: Icon(
+                    Icons.favorite,
+                    size: Theme.of(context).iconTheme.size,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ),
-                GButton(
-                  icon: Icons.wallet,
-                  iconSize: Theme.of(context).iconTheme.size,
-                  iconColor: Theme.of(context).iconTheme.color,
-                  text: "wallet",
-                  textStyle: Theme.of(context).textTheme.titleMedium,
+                MoltenTab(
+                  icon: Icon(
+                    Icons.wallet_rounded,
+                    size: Theme.of(context).iconTheme.size,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ),
               ],
-              //),
-            ),
-          ),
-          body: Obx(() => pageviewController
-              .pages[pageviewController.selectedIndex.value])),
+            )),
+      ),
+      //  backgroundColor: Theme.of(context).backgroundColor,
+
+      body: Obx(() =>
+          pageviewController.pages[pageviewController.selectedIndex.value]),
     );
   }
 }

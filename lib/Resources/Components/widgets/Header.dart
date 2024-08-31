@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class cryptoHeader extends StatelessWidget {
   final String? welcomeText;
@@ -19,22 +20,22 @@ class cryptoHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.11,
-        width: MediaQuery.of(context).size.width * 0.85,
+        height: Get.height * 0.13,
+        width: Get.width * 0.85,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: Get.height * 0.02,
             ),
             Text(
               welcomeText ?? '',
               style: Theme.of(context).textTheme.titleSmall,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.8,
+              height: Get.height * 0.076,
+              width: Get.width * 0.8,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

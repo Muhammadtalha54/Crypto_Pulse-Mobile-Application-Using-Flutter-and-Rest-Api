@@ -8,44 +8,42 @@ import 'package:flutter/src/widgets/framework.dart';
 class Roundbutton extends StatelessWidget {
   const Roundbutton(
       {Key? key,
-      this.buttoncolor = Appcolor.tButtonColor,
-      this.textcolor = Appcolor.TextColor,
+      this.buttoncolor,
+      this.textcolor,
       required this.title,
       required this.onpress,
       required this.radius,
-      this.width = 60,
-      this.height = 60,
-      this.textSize = 16,
-      this.loading = false});
+      required this.Width,
+      required this.Height,
+      this.textSize,
+      this.loading});
 
-  final bool loading;
+  final bool? loading;
   final String title;
-  final double radius;
-  final double height, width;
+  final double? radius;
+  final double Height, Width;
   final VoidCallback onpress;
-  final double textSize;
+  final double? textSize;
 
-  final Color textcolor, buttoncolor;
+  final Color? textcolor, buttoncolor;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onpress,
       child: Container(
-        height: height,
-        width: width,
+        height: Height,
+        width: Width,
         decoration: BoxDecoration(
-            color: buttoncolor, borderRadius: BorderRadius.circular(radius)),
+            color: buttoncolor, borderRadius: BorderRadius.circular(radius!)),
         child: Center(
-          child: loading
-              ? CircularProgressIndicator()
-              : Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: textcolor, fontSize: textSize),
-                ),
+          child: Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: textcolor, fontSize: textSize),
+          ),
         ),
       ),
     );

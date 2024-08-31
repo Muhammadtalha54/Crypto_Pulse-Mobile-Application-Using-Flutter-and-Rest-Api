@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,6 +13,7 @@ class Heading extends StatelessWidget {
     return Container(
       height: Get.height * 0.05,
       width: Get.width * 0.87,
+      //  color: Colors.white,
       child: Text(heading!,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,

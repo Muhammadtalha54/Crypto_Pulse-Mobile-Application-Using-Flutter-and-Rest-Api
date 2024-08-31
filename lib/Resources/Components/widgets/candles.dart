@@ -36,8 +36,21 @@ class Candlesdata extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              borderRadius: BorderRadius.circular(10)),
+            borderRadius: BorderRadius.circular(20),
+            // gradient: LinearGradient(
+            //   colors: [
+            //     Theme.of(context)
+            //         .colorSchemeAS
+            //         .primaryContainer, // Primary color from theme
+            //     Theme.of(context)
+            //         .colorScheme
+            //         .secondaryContainer, // Secondary color from theme
+            //   ],
+            //   begin: Alignment.topLeft, // Gradient direction
+            //   end: Alignment.bottomRight,
+            //   stops: [0.5, 0.9],
+            // )
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

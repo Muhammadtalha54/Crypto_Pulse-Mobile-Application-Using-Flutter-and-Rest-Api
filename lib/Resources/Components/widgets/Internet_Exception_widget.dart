@@ -2,6 +2,9 @@ import 'package:crypto_tracker_1/Resources/Apptheme/Apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Internet_exception_widget extends StatefulWidget {
   const Internet_exception_widget({super.key, required this.onpress});
@@ -16,44 +19,41 @@ class _Internet_exception_widgetState extends State<Internet_exception_widget> {
   @override
   var height, width;
   Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Appcolor.YellowColor,
-      body: Column(
+    // height = MediaQuery.of(context).size.height;
+    // width = MediaQuery.of(context).size.width;
+    return Container(
+      height: Get.height * 0.7,
+      width: Get.width,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-            child: Icon(
-              Icons.cloud_off_outlined,
-              color: Appcolor.ExceptionIconColor,
-              size: 50,
+            child: Image.asset(
+              'assets/images/png1.png', // Path to your SVG asset
+              // Apply color if needed
+              width: width, // Set width and height
+              height: Get.height * 0.5,
             ),
           ),
           SizedBox(
-            height: height * 0.02,
+            height: Get.height * 0.01,
           ),
           Center(
             child: Container(
-              height: height! * 0.2,
-              width: width! * 0.7,
+              height: Get.height * 0.1,
+              width: Get.width * 0.7,
               child: Center(
                 child: Text(
-                  'Internet_Exception',
+                  'No Internet Connection',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Appcolor.TextColor,
-                    fontSize: 18,
+                  style: GoogleFonts.coiny(
+                    color: Colors.black,
+                    fontSize: Get.width * 0.04,
                   ),
                 ),
               ),
             ),
-          ),
-          CircularProgressIndicator(),
-          SizedBox(
-            height: height! * 0.05,
-            width: width! * 0.2,
           ),
           Center(
             child: ElevatedButton(

@@ -15,13 +15,18 @@ abstract class walletaddressservice {
 
 class walletcontroller1 extends GetxController implements walletaddressservice {
   RxBool isVerified = false.obs;
+  RxBool islogin=false.obs;
 
   Future<void> verifyMnemonic(String mnemonic, String input) async {
     if (input.trim() == mnemonic.trim()) {
       await getPrivateKey(mnemonic); // Assuming this is already defined
       isVerified.value = true;
+      islogin.value=true;
         SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isverified', isVerified.value);
+    await prefs.setBool('islogin', islogin.value);
+    Get.snackbar('Mnemonic phrase verified', 'The mnemnic phrase is verified keep the mnemonic phrase safely');
+
 
     
     }
@@ -29,6 +34,7 @@ class walletcontroller1 extends GetxController implements walletaddressservice {
   Future<void> removeverifiedstatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('isverified',);
+    await prefs.remove('islogin', );
   }
   // variable to store the private key
 

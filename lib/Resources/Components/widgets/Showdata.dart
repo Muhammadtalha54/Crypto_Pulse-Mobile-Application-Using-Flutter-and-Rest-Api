@@ -60,6 +60,23 @@ class _ShowcryptodataState extends State<Showcryptodata> {
         child: Container(
           height: widget.height,
           width: widget.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            // gradient: LinearGradient(
+            //   colors: [
+            //     Theme.of(context)
+            //         .colorScheme
+            //         .primaryContainer, // Primary color from theme
+            //     Theme.of(context)
+            //         .colorScheme
+            //         .secondaryContainer, // Secondary color from theme
+            //   ],
+            //   //  transform: GradientRotation(147 * 3.14159 / 180),
+            //   begin: Alignment.topLeft, // Gradient direction
+            //   end: Alignment.bottomRight,
+            //   stops: [0.6, 0.9], // Gradient stops
+            // ),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,7 +146,7 @@ class _ShowcryptodataState extends State<Showcryptodata> {
                                             color: isLiked
                                                 ? Colors.red
                                                 : Colors.grey.withOpacity(0.5),
-                                            size: 25,
+                                            size: Get.width * 0.053,
                                           );
                                         },
                                         onTap: (bool isLiked) async {

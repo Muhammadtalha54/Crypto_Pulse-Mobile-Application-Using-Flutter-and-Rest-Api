@@ -49,7 +49,7 @@ class NFTListPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 200, // Adjust the height as needed
+                    height: Get.height*0.15, // Adjust the height as needed
                     child: nft['normalized_metadata']['image'] != null
                         ? Image.network(
                             nft['normalized_metadata']['image'],

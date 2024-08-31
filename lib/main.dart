@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final themecontroller _themeController = Get.put(themecontroller());
+  var screenWidth = Get.width;
+  var screenHeight = Get.height;
+
   @override
   Widget build(BuildContext context) {
     return Obx(

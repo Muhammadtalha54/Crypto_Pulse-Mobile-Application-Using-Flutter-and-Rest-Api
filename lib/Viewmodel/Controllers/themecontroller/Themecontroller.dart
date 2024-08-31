@@ -1,4 +1,6 @@
+
 import 'package:crypto_tracker_1/Resources/Apptheme/Apptheme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +11,7 @@ class themecontroller extends GetxController {
   void toggleTheme() {
     isDarkmode.value = !isDarkmode.value;
     _saveTheme(isDarkmode.value);
-    Get.changeTheme(isDarkmode.value ? darkTheme : lightTheme);
+    Get.changeTheme(isDarkmode.value ? darkTheme: lightTheme);
   }
 
   void onInit() {

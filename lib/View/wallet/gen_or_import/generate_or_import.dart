@@ -9,6 +9,20 @@ class CreateOrImportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              // Primary color from theme
+              Theme.of(context)
+                  .colorScheme
+                  .secondary, // Secondary color from theme
+              Theme.of(context).colorScheme.primary,
+            ],
+            begin: Alignment.topLeft, // Gradient direction
+            end: Alignment.bottomRight,
+            stops: [0.3, 0.8], // Gradient stops
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -17,12 +31,9 @@ class CreateOrImportPage extends StatelessWidget {
             // Header
             Container(
               alignment: Alignment.center,
-              child: const Text(
+              child: Text(
                 'Moralis Wallet',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             const SizedBox(height: 24.0),

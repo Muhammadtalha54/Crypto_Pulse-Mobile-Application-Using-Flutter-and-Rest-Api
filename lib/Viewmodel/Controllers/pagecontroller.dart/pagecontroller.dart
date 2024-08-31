@@ -14,5 +14,6 @@ class Page_View_controller extends GetxController {
 
   void changePage(int index) {
     selectedIndex.value = index;
+    
   }
 }

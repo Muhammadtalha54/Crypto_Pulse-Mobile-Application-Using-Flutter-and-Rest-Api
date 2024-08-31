@@ -1,52 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/container.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:get/get.dart';
-// import 'package:getx_mvvm/View_models/Controllers/walletcontroller/walletcontroller.dart';
-
-// class walletpage1 extends StatefulWidget {
-//   const walletpage1({super.key});
-
-//   @override
-//   State<walletpage1> createState() => _walletpage1State();
-// }
-
-// class _walletpage1State extends State<walletpage1> {
-//   final walletcontroller = Get.put(walletcontroller1());
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Color.fromARGB(255, 243, 242, 242),
-//       appBar: AppBar(
-//         title: Text("crypto wallet"),
-//       ),
-//       body: Center(
-//         child: Container(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               ElevatedButton(
-//                   onPressed: () async {
-//                     final mnemonic = walletcontroller.generateMnemonic();
-//                     final privatekey =
-//                         await walletcontroller.getPrivateKey(mnemonic);
-//                     final publicKey =
-//                         await walletcontroller.getPublicKey(privatekey);
-
-//                     print("mnenoic:$mnemonic");
-//                     print("privatekey:$privatekey");
-//                     print("publickey:$publicKey");
-//                   },
-//                   child: Text("generate"))
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:crypto_tracker_1/Resources/Components/walletcomponents/get_balance.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/Header.dart';
+import 'package:crypto_tracker_1/Resources/Components/widgets/heading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,9 +24,11 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
+  final TextEditingController addresscontroller = TextEditingController();
   String walletAddress = '';
   String balance = '';
   String pvKey = '';
+  final walletcontroller = Get.put(walletcontroller1());
 
   @override
   void initState() {
@@ -84,28 +40,28 @@ class _WalletPageState extends State<WalletPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? privateKey = prefs.getString('privatekey');
     if (privateKey != null) {
-      final walletcontroller = Get.put(walletcontroller1());
       await walletcontroller.loadPrivatekey();
       EthereumAddress address = await walletcontroller.getPublicKey(privateKey);
 
       print(address.hex);
       setState(() {
         walletAddress = address.hex;
+
         pvKey = privateKey;
       });
       print(pvKey);
-      String response = await getBalances(address.hex, 'sepolia');
-      dynamic data = json.decode(response);
-      String newBalance = data['balance'] ?? '0';
+      // String response = await getBalances(address.hex, 'sepolia');
+      //  dynamic data = json.decode(response);
+      // String newBalance = data['balance'] ?? '0';
 
       // Transform balance from wei to ether
-      EtherAmount latestBalance = EtherAmount.inWei(BigInt.parse(newBalance));
-      String latestBalanceInEther =
-          latestBalance.getValueInUnit(EtherUnit.ether).toString();
+      // EtherAmount latestBalance = EtherAmount.inWei(BigInt.parse(newBalance));
+      // String latestBalanceInEther =
+      //     latestBalance.getValueInUnit(EtherUnit.ether).toString();
 
-      setState(() {
-        balance = latestBalanceInEther;
-      });
+      // setState(() {
+      //   balance = latestBalanceInEther;
+      // });
     }
   }
 
@@ -113,173 +69,199 @@ class _WalletPageState extends State<WalletPage> {
   Widget build(BuildContext context) {
     print(walletAddress);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wallet'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.primary, // Primary color from theme
+              Theme.of(context)
+                  .colorScheme
+                  .secondary, // Secondary color from theme
+            ],
+            begin: Alignment.topLeft, // Gradient direction
+            end: Alignment.bottomRight,
+            stops: [0.0, 0.74], // Gradient stops
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            cryptoHeader(
+                trackerText: "My Portfolio",
+                icon: Icons.logout_outlined,
+                onIconTap: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  await prefs.remove('privateKey');
+                  await walletcontroller.removeverifiedstatus();
+
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateOrImportPage(),
+                    ),
+                    (route) => false,
+                  );
+                }),
+            Container(
+              height: Get.height * 0.35,
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 32.0),
+                  const Text(
+                    'Balance',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    '\$ 12000.050',
+                    style: const TextStyle(
+                        fontSize: 35.0, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 32.0),
+                  const Text(
+                    'Wallet Address',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    walletAddress,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
-                  'Wallet Address',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
+                Column(
+                  children: [
+                    FloatingActionButton(
+                      heroTag: 'sendButton', // Unique tag for send button
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SendTokensPage(privateKey: pvKey)),
+                        );
+                      },
+                      child: Icon(
+                        Icons.send,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    const Text('Send'),
+                  ],
                 ),
-                const SizedBox(height: 16.0),
-                Text(
-                  walletAddress,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 32.0),
-                const Text(
-                  'Balance',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16.0),
-                Text(
-                  balance,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                  ),
-                  textAlign: TextAlign.center,
+                Column(
+                  children: [
+                    FloatingActionButton(
+                      heroTag: 'refreshButton', // Unique tag for send button
+                      onPressed: () {
+                        setState(() {
+                          // Update any necessary state variables or perform any actions to refresh the widget
+                        });
+                      },
+                      child: Icon(
+                        Icons.replay_outlined,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    const Text('Refresh'),
+                  ],
                 ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  FloatingActionButton(
-                    heroTag: 'sendButton', // Unique tag for send button
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                SendTokensPage(privateKey: pvKey)),
-                      );
-                    },
-                    child: const Icon(Icons.send),
-                  ),
-                  const SizedBox(height: 8.0),
-                  const Text('Send'),
-                ],
-              ),
-              Column(
-                children: [
-                  FloatingActionButton(
-                    heroTag: 'refreshButton', // Unique tag for send button
-                    onPressed: () {
-                      setState(() {
-                        // Update any necessary state variables or perform any actions to refresh the widget
-                      });
-                    },
-                    child: const Icon(Icons.replay_outlined),
-                  ),
-                  const SizedBox(height: 8.0),
-                  const Text('Refresh'),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 30.0),
-          Expanded(
-            child: DefaultTabController(
-              length: 3,
-              child: Column(
-                children: [
-                  const TabBar(
-                    labelColor: Colors.blue,
-                    tabs: [
-                      Tab(text: 'Assets'),
-                      Tab(text: 'NFTs'),
-                      Tab(text: 'Options'),
-                    ],
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        // Assets Tab
-                        Column(
+            const SizedBox(height: 30.0),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40))),
+                child: DefaultTabController(
+                  length: 2,
+                  child: Column(
+                    children: [
+                      const TabBar(
+                        labelColor: Color.fromARGB(255, 2, 75, 179),
+                        labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                        tabs: [
+                          Tab(text: 'Assets'),
+                          Tab(text: 'NFTs'),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
                           children: [
-                            Card(
-                              margin: const EdgeInsets.all(16.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'Sepolia ETH',
-                                      style: TextStyle(
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            // Assets Tab
+                            Column(
+                              children: [
+                                Card(
+                                  color: Color.fromARGB(255, 205, 201, 201),
+                                  margin: const EdgeInsets.all(16.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'Sepolia ETH',
+                                          style: TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          balance,
+                                          style: const TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Text(
-                                      balance,
-                                      style: const TextStyle(
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
+                                  ),
+                                )
+                              ],
+                            ),
+                            // NFTs Tab
+                            SingleChildScrollView(
+                                child: NFTListPage(
+                                    address: walletAddress, chain: 'sepolia')),
+                            // Activities Tab
                           ],
                         ),
-                        // NFTs Tab
-                        SingleChildScrollView(
-                            child: NFTListPage(
-                                address: walletAddress, chain: 'sepolia')),
-                        // Activities Tab
-                        Center(
-                          child: ListTile(
-                            leading: const Icon(Icons.logout),
-                            title: const Text('Logout'),
-                            onTap: () async {
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              await prefs.remove('privateKey');
-                              // ignore: use_build_context_synchronously
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CreateOrImportPage(),
-                                ),
-                                (route) => false,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
