@@ -1,4 +1,4 @@
-# crypto_tracker_1
+# crypto_pulse
 Getx and MVVM clean code architecture used
 
 # Features
