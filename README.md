@@ -28,12 +28,7 @@
 - Create your own **crypto wallet** within the app.  
 - **Send & Receive:** Easily send and receive crypto from wallet to wallet.  
 
----
-
-
-## ⚡ ScreenShots:
-
-<img width="838" height="606" alt="image" src="https://github.com/user-attachments/assets/9a8eef9e-58e4-4cc5-a1ca-5e87bb1adfdd" />
+--
 
 
 
